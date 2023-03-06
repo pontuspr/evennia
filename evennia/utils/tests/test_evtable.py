@@ -7,7 +7,7 @@ from unittest import skip
 
 from evennia.utils import ansi, evtable
 from evennia.utils.test_resources import EvenniaTestCase
-
+import evennia.utils.tests.data.test_evtable_data as test_evtable_data
 
 class TestEvTable(EvenniaTestCase):
     def _validate(self, expected, result):
@@ -32,17 +32,7 @@ class TestEvTable(EvenniaTestCase):
             align="l",
         )
 
-        expected = """
-+----------+----------+----------+
-| Heading1 | Heading2 | Heading3 |
-+~~~~~~~~~~+~~~~~~~~~~+~~~~~~~~~~+
-| 1        | 4        | 7        |
-+----------+----------+----------+
-| 2        | 5        | 8        |
-+----------+----------+----------+
-| 3        | 6        | 9        |
-+----------+----------+----------+
-"""
+        expected =test_evtable_data.base_data
 
         self._validate(expected, str(table))
 
@@ -58,17 +48,7 @@ class TestEvTable(EvenniaTestCase):
             border="cells",
             align="l",
         )
-        expected = """
-+----------+----------+---+
-| Heading1 | Heading2 |   |
-+~~~~~~~~~~+~~~~~~~~~~+~~~+
-| 1        | 4        | 7 |
-+----------+----------+---+
-| 2        | 5        | 8 |
-+----------+----------+---+
-| 3        | 6        | 9 |
-+----------+----------+---+
-"""
+        expected = test_evtable_data.short_header
 
         self._validate(expected, str(table))
 
@@ -84,17 +64,8 @@ class TestEvTable(EvenniaTestCase):
         )
         table.add_column("|rThis is long data|n", "|bThis is even longer data|n")
 
-        expected = """
-+----------+----------+----------+--------------------------+
-| Heading1 | Heading2 | Heading3 |                          |
-+~~~~~~~~~~+~~~~~~~~~~+~~~~~~~~~~+~~~~~~~~~~~~~~~~~~~~~~~~~~+
-| 1        | 4        | 7        | This is long data        |
-+----------+----------+----------+--------------------------+
-| 2        | 5        | 8        | This is even longer data |
-+----------+----------+----------+--------------------------+
-| 3        | 6        | 9        |                          |
-+----------+----------+----------+--------------------------+
-"""
+        expected = test_evtable_data.add_column
+
         self._validate(expected, str(table))
 
     def test_add_row(self):
@@ -108,19 +79,7 @@ class TestEvTable(EvenniaTestCase):
         )
         table.add_row("This is a single row")
 
-        expected = """
-+----------------------+----------+----------+
-| Heading1             | Heading2 | Heading3 |
-+~~~~~~~~~~~~~~~~~~~~~~+~~~~~~~~~~+~~~~~~~~~~+
-| 1                    | 4        | 7        |
-+----------------------+----------+----------+
-| 2                    | 5        | 8        |
-+----------------------+----------+----------+
-| 3                    | 6        | 9        |
-+----------------------+----------+----------+
-| This is a single row |          |          |
-+----------------------+----------+----------+
-"""
+        expected = test_evtable_data.add_row
         self._validate(expected, str(table))
 
     def test_add_row_and_column(self):
@@ -136,19 +95,7 @@ class TestEvTable(EvenniaTestCase):
         table.add_row("This is a single row")
         table.add_column("|rThis is long data|n", "|bThis is even longer data|n")
 
-        expected = """
-+----------------------+----------+----------+--------------------------+
-| Heading1             | Heading2 | Heading3 |                          |
-+~~~~~~~~~~~~~~~~~~~~~~+~~~~~~~~~~+~~~~~~~~~~+~~~~~~~~~~~~~~~~~~~~~~~~~~+
-| 1                    | 4        | 7        | This is long data        |
-+----------------------+----------+----------+--------------------------+
-| 2                    | 5        | 8        | This is even longer data |
-+----------------------+----------+----------+--------------------------+
-| 3                    | 6        | 9        |                          |
-+----------------------+----------+----------+--------------------------+
-| This is a single row |          |          |                          |
-+----------------------+----------+----------+--------------------------+
-"""
+        expected = test_evtable_data.add_row_and_column
         self._validate(expected, str(table))
 
     def test_reformat(self):
@@ -165,35 +112,15 @@ class TestEvTable(EvenniaTestCase):
         # width
         table.reformat(width=50)
 
-        expected = """
-+----------------+---------------+---------------+
-| Heading1       | Heading2      | Heading3      |
-+~~~~~~~~~~~~~~~~+~~~~~~~~~~~~~~~+~~~~~~~~~~~~~~~+
-| 1              | 4             | 7             |
-+----------------+---------------+---------------+
-| 2              | 5             | 8             |
-+----------------+---------------+---------------+
-| 3              | 6             | 9             |
-+----------------+---------------+---------------+
-        """
+        expected = test_evtable_data.reformat1
         self._validate(expected, str(table))
 
         # right-aligned
 
         table.reformat_column(2, width=30, align="r")
 
-        expected = """
-+---------+--------+-----------------------------+
-| Heading | Headin |                    Heading3 |
-| 1       | g2     |                             |
-+~~~~~~~~~+~~~~~~~~+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+
-| 1       | 4      |                           7 |
-+---------+--------+-----------------------------+
-| 2       | 5      |                           8 |
-+---------+--------+-----------------------------+
-| 3       | 6      |                           9 |
-+---------+--------+-----------------------------+
-        """
+        expected = test_evtable_data.reformat2
+
         self._validate(expected, str(table))
 
     def test_multiple_rows(self):
@@ -211,11 +138,7 @@ class TestEvTable(EvenniaTestCase):
                 f"This is col 2, row {i}",
             )
 
-        expected = [
-            "+-----------------------+-----------------------+-----------------------+",
-            "| Heading1              | Heading2              | Heading3              |",
-            "+~~~~~~~~~~~~~~~~~~~~~~~+~~~~~~~~~~~~~~~~~~~~~~~+~~~~~~~~~~~~~~~~~~~~~~~+",
-        ]
+        expected = test_evtable_data.multiple_rows
         for i in range(nlines):
             expected.append(
                 f"| This is col 0, row {i:<2} | This is col 1, row {i:<2} | This is col 2, row"
@@ -238,12 +161,8 @@ class TestEvTable(EvenniaTestCase):
         # direct table add
         table = evtable.EvTable(table=[["another"]], fill_char=".", pad_char="#", width=8)
 
-        expected = """
-+------+
-|#anot#|
-|#her.#|
-+------+
-        """
+        expected = test_evtable_data.direct_evcolumn_adds1
+
         self._validate(expected, str(table))
 
         # add with .add_column
@@ -267,15 +186,7 @@ class TestEvTable(EvenniaTestCase):
 
         table = evtable.EvTable(table=[colA, colB], fill_char=".", pad_char="#")
 
-        expected = """
-+--------+-------+
-|#this..#|#and..#|
-|#is....#|#anoth#|
-|#......#|#er...#|
-|#a.....#|#one..#|
-|#column#|#here.#|
-+--------+-------+
-        """
+        expected =test_evtable_data.direct_evcolumn_adds2
 
         self._validate(expected, str(table))
 
@@ -288,11 +199,7 @@ class TestEvTable(EvenniaTestCase):
         """
         # simple crop
         table = evtable.EvTable(table=[["column"]], width=7, enforce_size=True)
-        expected = """
-+-----+
-| col |
-+-----+
-        """
+        expected = test_evtable_data.width_enforcement1
 
         # more advanced table with crop
         self._validate(expected, str(table))
@@ -301,14 +208,7 @@ class TestEvTable(EvenniaTestCase):
         colB = evtable.EvColumn("and", "another", "column", "here")
         table = evtable.EvTable(table=[colA, colB], width=40)
 
-        expected = """
-+----+---------------------------------+
-| it | and                             |
-| is | another                         |
-| a  | column                          |
-| co | here                            |
-+----+---------------------------------+
-        """
+        expected =test_evtable_data.width_enforcement2
 
         self._validate(expected, str(table))
 
@@ -322,14 +222,7 @@ class TestEvTable(EvenniaTestCase):
         column = evtable.EvColumn("this", "is", "a", "column", fill_char=".")
         table = evtable.EvTable(table=[column])
 
-        expected = """
-+--------+
-| this.. |
-| is.... |
-| a..... |
-| column |
-+--------+
-        """
+        expected =test_evtable_data.styling_overrides
 
         self._validate(expected, str(table))
 
