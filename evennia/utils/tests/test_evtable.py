@@ -9,6 +9,7 @@ from evennia.utils import ansi, evtable
 from evennia.utils.test_resources import EvenniaTestCase
 import evennia.utils.tests.data.test_evtable_data as test_evtable_data
 
+
 class TestEvTable(EvenniaTestCase):
     def _validate(self, expected, result):
         """easier debug"""
