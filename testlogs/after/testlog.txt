@@ -1,0 +1,122 @@
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+EEE...............................................................................................................................................................................................................................ssssssssssssssssssssssssssssssssssss..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s.s.............s.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+0 static files copied to 'C:\Users\danie\source\repos\evennia\mygame\server\.static', 205 unmodified.
+....................................
+======================================================================
+ERROR: evennia.contrib.base_systems.ingame_python (unittest.loader._FailedTest.evennia.contrib.base_systems.ingame_python)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: evennia.contrib.base_systems.ingame_python
+Traceback (most recent call last):
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: scripts_scriptdb
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 440, in _find_test_path
+    package = self._get_module_from_name(name)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\base_systems\ingame_python\__init__.py", line 6, in <module>
+    from . import callbackhandler, commands, eventfuncs, scripts, tests, typeclasses, utils
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\base_systems\ingame_python\typeclasses.py", line 167, in <module>
+    @register_events
+     ^^^^^^^^^^^^^^^
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\base_systems\ingame_python\utils.py", line 59, in register_events
+    storage = ScriptDB.objects.get(db_key="event_handler")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\source\repos\evennia\evennia\utils\idmapper\manager.py", line 32, in get
+    inst = super().get(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 646, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 376, in __len__
+    self._fetch_all()
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 1867, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\query.py", line 87, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\sql\compiler.py", line 1398, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\backends\sqlite3\base.py", line 357, in execute
+    return Database.Cursor.execute(self, query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: scripts_scriptdb
+
+
+======================================================================
+ERROR: evennia.contrib.grid.xyzgrid (unittest.loader._FailedTest.evennia.contrib.grid.xyzgrid)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: evennia.contrib.grid.xyzgrid
+Traceback (most recent call last):
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\grid\xyzgrid\xymap_legend.py", line 13, in <module>
+    from scipy import zeros
+ModuleNotFoundError: No module named 'scipy'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 440, in _find_test_path
+    package = self._get_module_from_name(name)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\grid\xyzgrid\__init__.py", line 5, in <module>
+    from . import example, launchcmd, prototypes, tests, utils, xymap, xymap_legend, xyzgrid, xyzroom
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\grid\xyzgrid\example.py", line 20, in <module>
+    from evennia.contrib.grid.xyzgrid import xymap_legend
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\grid\xyzgrid\xymap_legend.py", line 15, in <module>
+    raise ImportError(
+ImportError: No module named 'scipy'
+The XYZgrid contrib requires the SciPy package. Install with `pip install scipy'.
+
+
+======================================================================
+ERROR: evennia.contrib.utils.git_integration (unittest.loader._FailedTest.evennia.contrib.utils.git_integration)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: evennia.contrib.utils.git_integration
+Traceback (most recent call last):
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 440, in _find_test_path
+    package = self._get_module_from_name(name)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python311\Lib\unittest\loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\utils\git_integration\__init__.py", line 5, in <module>
+    from .git_integration import GitCmdSet  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\source\repos\evennia\evennia\contrib\utils\git_integration\git_integration.py", line 3, in <module>
+    import git
+ModuleNotFoundError: No module named 'git'
+
+
+----------------------------------------------------------------------
+Ran 1446 tests in 614.108s
+
+FAILED (errors=3, skipped=39)
+Destroying test database for alias 'default'...
